@@ -23,17 +23,17 @@
 @property (nonatomic, assign) UIViewAnimationOptions options;//默认 UIViewAnimationOptionCurveEaseInOut
 
 //移动几页 前+ 后-
-- (void)moveByPages:(NSInteger)offset animated:(BOOL)animated;
+ - (void)moveByPages:(NSInteger)offset animated:(BOOL)animated;
 //移动到第几页
-- (void)setPage:(NSInteger)newIndex animated:(BOOL)animated;
-- (void)setPage:(NSInteger)newIndex transition:(XQDCycleScrollViewTransition)transition animated:(BOOL)animated;
+ - (void)setPage:(NSInteger)newIndex animated:(BOOL)animated;
+ - (void)setPage:(NSInteger)newIndex transition:(XQDCycleScrollViewTransition)transition animated:(BOOL)animated;
 
 
-- (id)initWithFrame:(CGRect)frame
+ - (id)initWithFrame:(CGRect)frame
 direction:(XQDCycleScrollViewDirection)direction
 cycleScroll:(BOOL)cycleScrolling;
 
-- (void)initWithDirection:(XQDCycleScrollViewDirection)direction;
+ - (void)initWithDirection:(XQDCycleScrollViewDirection)direction;
 
 ## 代理
-- (void)cycleScrollView:(XQDCycleScrollView *)cycleScrollView currentPageChanged:(NSInteger)currentPage;
+ - (void)cycleScrollView:(XQDCycleScrollView *)cycleScrollView currentPageChanged:(NSInteger)currentPage;
