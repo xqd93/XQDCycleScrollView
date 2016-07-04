@@ -10,7 +10,7 @@
 #import "XQDCycleScrollView.h"
 #import "TestView.h"
 
-@interface ViewController2 ()
+@interface ViewController2 ()<XQDCycleScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet XQDCycleScrollView *cycleScrollView1;
 
 @end
@@ -32,9 +32,15 @@
         [ary4 addObject:view];
     }
     _cycleScrollView1.dataSource = ary4;
-    _cycleScrollView1.direction = XQDCycleScrollViewDirectionVertical;
+//    _cycleScrollView1.direction = XQDCycleScrollViewDirectionVertical;
     _cycleScrollView1.autoPlay = NO;
+    _cycleScrollView1.cycleScrollViewDelegate = self;
     _cycleScrollView1.autoNextPage = -1;
+}
+
+- (void)cycleScrollView:(XQDCycleScrollView *)cycleScrollView currentPageChanged:(NSInteger)currentPage
+{
+    NSLog(@"currentPage = %ld",currentPage);
 }
 
 - (void)didReceiveMemoryWarning {

@@ -90,7 +90,7 @@ typedef NS_ENUM(NSInteger ,XQDCycleScrollViewScrollDirection) {
     _selfWidth = self.frame.size.width;
     _selfHeight = self.frame.size.height;
     
-    int offset = (int)([self hasMultiplePages] ? 3 : 1);//_numberOfPages + 2 --> 3
+    int offset = (int)([self hasMultiplePages] ? 3 : 1);//_numberOfPages + 2
     if (_direction == XQDCycleScrollViewDirectionHorizontal) {
         self.contentSize = CGSizeMake(_selfWidth * offset,
                                       _selfHeight);
@@ -232,8 +232,14 @@ typedef NS_ENUM(NSInteger ,XQDCycleScrollViewScrollDirection) {
         [_cycleScrollViewDelegate cycleScrollViewDidEndDragging:self willDecelerate:decelerate];
     }
 }
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    CGFloat offset = (_direction==XQDCycleScrollViewDirectionHorizontal) ? scrollView.contentOffset.x : scrollView.contentOffset.y;
+    if (offset != self.selfSize*XQDCycleScrollViewDefaultOffsetCount) {
+        [scrollView setContentOffset:[self createPoint:self.selfSize*XQDCycleScrollViewDefaultOffsetCount] animated:YES];
+    }
+    
     if (_cycleScrollViewDelegate && [_cycleScrollViewDelegate respondsToSelector:@selector(cycleScrollViewDidEndDecelerating:)]) {
         [_cycleScrollViewDelegate cycleScrollViewDidEndDecelerating:self];
     }
@@ -280,7 +286,7 @@ typedef NS_ENUM(NSInteger ,XQDCycleScrollViewScrollDirection) {
     
     NSInteger newPageIndex = _currentPage;
     
-    if (offset <= 0)//0 --> self.selfSize
+    if (offset <= 0)//self.selfSize*(XQDCycleScrollViewDefaultOffsetCount-1)
         newPageIndex = [self pageIndexByAdding:-1 from:_currentPage];
     else if (offset >= self.selfSize*(XQDCycleScrollViewDefaultOffsetCount+1))
         newPageIndex = [self pageIndexByAdding:+1 from:_currentPage];

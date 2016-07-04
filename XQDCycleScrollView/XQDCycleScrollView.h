@@ -61,6 +61,7 @@ typedef NS_ENUM(NSInteger ,XQDCycleScrollViewTransition) {
 
 @protocol XQDCycleScrollViewDelegate <NSObject>
 
+@optional
 - (NSInteger)numberOfPagesInCycleScrollView:(XQDCycleScrollView *)cycleScrollView;
 - (UIView *)cycleScrollView:(XQDCycleScrollView *)cycleScrollView viewForRowAtIndex:(NSInteger)index;
 
