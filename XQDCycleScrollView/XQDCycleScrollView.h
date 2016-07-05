@@ -4,7 +4,7 @@
 //
 //  Created by QiDongXiao on 16/6/8.
 //  Copyright © 2016年 QiDongXiao. All rights reserved.
-//
+//  1.0.2
 
 #import <UIKit/UIKit.h>
 
